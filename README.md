@@ -1,5 +1,6 @@
 # rainbowña - a lolcat clone
 Turn text into text but rainbow!
+With the power of lipgloss and bubbletea, this rainbow creator is pretty neat!
 ## Features
 - Hastily duct-taped args parser!
     - Up to one(1) argument at a time!!!
