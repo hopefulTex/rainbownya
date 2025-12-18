@@ -1,4 +1,4 @@
-module lulcat
+module github.com/hopefulTex/rainbownya
 
 go 1.19
 
