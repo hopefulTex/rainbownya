@@ -89,6 +89,7 @@ func main() {
 		context.Background(),
 		cmd,
 		fang.WithNotifySignal(os.Interrupt, os.Kill),
+		fang.WithVersion(VERSION),
 	); err != nil {
 		os.Exit(1)
 	}
