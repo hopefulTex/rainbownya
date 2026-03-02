@@ -5,12 +5,12 @@ import (
 )
 
 // returns a gradient colored solid block of text
-func Bar(vars Variables, count int) string {
+func Bar(vars Variables, count, length int) string {
 	var str strings.Builder
 
 	i := 0
 	for count > 0 {
-		str.WriteString(Rainbow(barString(80), i, vars))
+		str.WriteString(Rainbow(barString(length), i, vars))
 		str.WriteRune('\n')
 		count--
 		i++

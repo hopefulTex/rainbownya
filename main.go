@@ -11,11 +11,14 @@ import (
 	"charm.land/lipgloss/v2"
 	"github.com/charmbracelet/colorprofile"
 	"github.com/charmbracelet/fang"
+	"github.com/charmbracelet/x/term"
 	"github.com/hopefulTex/rainbownya/rainbow"
 	"github.com/hopefulTex/rainbownya/ui"
 	"github.com/mattn/go-isatty"
 	"github.com/spf13/cobra"
 )
+
+const DEFAULT_WIDTH = 80
 
 func main() {
 
@@ -23,6 +26,7 @@ func main() {
 	var isPiped bool = !isatty.IsTerminal(os.Stdin.Fd())
 	var mathVariables rainbow.Variables = rainbow.DefaultVars()
 	var barSize int = 0
+	var barWidth int = -1
 
 	var lineMode bool = false
 
@@ -37,7 +41,19 @@ func main() {
 			}
 
 			if barSize > 0 {
-				t := rainbow.Bar(mathVariables, barSize)
+				var width int = 0
+
+				if barWidth != -1 {
+					width = barWidth
+				} else {
+					w, _, err := term.GetSize(os.Stdout.Fd())
+					if err != nil {
+						w = DEFAULT_WIDTH
+					}
+					width = min(w, DEFAULT_WIDTH)
+				}
+
+				t := rainbow.Bar(mathVariables, barSize, width)
 				fmt.Println(t)
 				return nil
 			}
@@ -75,6 +91,7 @@ func main() {
 	cmd.Version = VERSION
 
 	cmd.Flags().IntVar(&barSize, "bar", 0, "Print a pretty bar of size n")
+	cmd.Flags().IntVar(&barWidth, "bar-width", -1, "Change the bar width")
 
 	cmd.Flags().Float64VarP(&mathVariables.Spread, "spread", "s", 3.0, "Set spread")
 	cmd.Flags().Float64VarP(&mathVariables.Freq, "frequency", "f", 0.3, "Set frequency")
