@@ -1,15 +1,15 @@
 package main
 
-//TODO: Fix the second line always having wrong offset
-
 import (
 	"fmt"
 	"io"
 	"os"
 	"strings"
+
+	"github.com/hopefulTex/rainbownya/rainbow"
 )
 
-func rainbowPipe(vars variables) {
+func rainbowPipe(vars rainbow.Variables) {
 	var str string
 	var eof bool = false
 	var i int = 0
@@ -25,7 +25,7 @@ func rainbowPipe(vars variables) {
 		} else {
 			leftover = str[lastLine:]
 		}
-		fmt.Print(rainbow(str[:lastLine], i, vars))
+		fmt.Print(rainbow.Rainbow(str[:lastLine], i, vars))
 		i++
 	}
 }

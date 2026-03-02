@@ -1,9 +1,10 @@
-# rainbowña - a lolcat clone
+# rainbowcat - a lolcat 'clone'
+
+You know, like, ña?
 Turn text into text but rainbow!
 With the power of lipgloss and bubbletea, this rainbow creator is pretty neat!
+
 ## Features
-- Hastily duct-taped args parser!
-    - Up to one(1) argument at a time!!!
 - Use `--bar` to print a rainbow bar!
   - Hint: append a number to get multiple bars! `--bar 2`
 - Pipe statically from the likes of `cowsay`, or even live from `ping`!
