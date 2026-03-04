@@ -1,8 +1,10 @@
 package rainbow
 
 import (
+	"fmt"
 	"math"
 	"strconv"
+	"strings"
 )
 
 type Variables struct {
@@ -21,6 +23,20 @@ func DefaultVars() Variables {
 		Center: 127.5,
 		Seed:   -1.0,
 	}
+}
+
+func (v Variables) String() string {
+	var str strings.Builder
+
+	str.WriteString("{\n  ")
+	fmt.Fprintf(&str, "Seed: %f,\n  ", v.Seed)
+	fmt.Fprintf(&str, "Frequency: %f,\n  ", v.Freq)
+	fmt.Fprintf(&str, "Spread: %f,\n  ", v.Spread)
+	fmt.Fprintf(&str, "Width: %f,\n  ", v.Width)
+	fmt.Fprintf(&str, "Center: %f\n", v.Center)
+	str.WriteString("}\n")
+
+	return str.String()
 }
 
 func (v *Variables) calcColor(index int) string {

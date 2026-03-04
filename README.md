@@ -9,6 +9,7 @@ With the power of lipgloss and bubbletea, this rainbow creator is pretty neat!
 ### Use `--bar` to print a rainbow bar!
 
   - Hint: append a number to get multiple bars! `--bar 2`
+  - Hint but again: use the `--bar-width` for a custom block width
 
 <img alt="Running rainbownya with the bar flag" width="600" src="bar.gif">
   

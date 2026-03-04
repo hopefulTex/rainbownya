@@ -28,10 +28,11 @@ func main() {
 	var barSize int = 0
 	var barWidth int = -1
 
+	var previewMode bool = false
 	var lineMode bool = false
 
 	cmd := &cobra.Command{
-		Use:   "rainbowcat",
+		Use:   "rainbownya filename filename filename...",
 		Short: "A nice lolcat 'clone'",
 		Args:  cobra.MinimumNArgs(0),
 		RunE: func(c *cobra.Command, args []string) error {
@@ -69,6 +70,12 @@ func main() {
 				return nil
 			}
 
+			if previewMode {
+				text := ui.LivePreview()
+				fmt.Print(text)
+				return nil
+			}
+
 			if len(args) < 1 {
 				ui.Interactive(mathVariables)
 				return nil
@@ -89,6 +96,8 @@ func main() {
 		},
 	}
 	cmd.Version = VERSION
+
+	cmd.Flags().BoolVar(&previewMode, "preview", false, "Preview different maths settings")
 
 	cmd.Flags().IntVar(&barSize, "bar", 0, "Print a pretty bar of size n")
 	cmd.Flags().IntVar(&barWidth, "bar-width", -1, "Change the bar width")
